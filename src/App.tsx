@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // useState 는 가장 기본적인 Hook이며, 함수 컴포넌트에서도 가변적인 상태를 지닐 수 있게 해준다
+  // => 이 함수가 호출되면 배열을 반환한다 => 그 배열의 첫번째 요소는 현재 상태의 값이고, 두번째 요소는 상태를 변경하는 함수이다.
+  // useState 함수의 파라미터 에는 상태의 기본값을 넣어준다.
 
+  const [value, setValue] = useState(0);
+
+  const onChangeName = (event) => {
+    setName(event.target.value);
+  };
+  const onChangeNickname = () => {
+    setNickname(event?.target.value);
+  };
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    <div>
+      <p>
+        현재 카운트 값은 <b>{value}</b>
       </p>
-    </>
-  )
+      <button onClick={() => setValue(value + 1)}> 1 증가 </button>
+      <button onClick={() => setValue(value - 1)}> 1 감소</button>
+
+      <div>
+        <input type="text" value={name} onChange={onChangeName} />
+        <input type="text" value={nickname} onChange={onChangeNickname} />
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
